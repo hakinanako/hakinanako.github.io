@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>浅入VUE</title>
+      <link href="/2023/04/22/2023-04-22/"/>
+      <url>/2023/04/22/2023-04-22/</url>
+      
+        <content type="html"><![CDATA[<h2 id="VUE的结构"><a href="#VUE的结构" class="headerlink" title="VUE的结构"></a>VUE的结构</h2><pre><code>对于每一个VUE实例，其基本结构如下        1.  el: 挂载点，用于挂载Vue实例        2.  data: 数据，用于存放数据        3. methods: 方法，用于存放方法        4. computed: 计算属性，用于存放计算属性        5. watch: 监听器，用于监听数据的变化        6. filters: 过滤器，用于过滤数据        7. components: 组件，用于存放组件        8. directives: 指令，用于存放指令        9. mixins: 混入，用于混入一些公共的属性或方法        10. props: 属性，用于父子组件之间传递数据        11. template: 模板，用于编写模板        12. render: 渲染函数，用于编写渲染函数        13. renderError: 渲染错误函数，用于编写渲染错误函数</code></pre>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title></title>
       <link href="/2023/03/03/Reggie/"/>
       <url>/2023/03/03/Reggie/</url>
