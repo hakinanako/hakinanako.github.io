@@ -55,7 +55,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2023-04-25 19:07:26'
+  postUpdate: '2023-04-25 19:32:23'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -177,8 +177,13 @@ if (false) {
 反向代理正向代理比如我们要看推特，看GitHub等等。我们直接用国内的服务器无法访问国外的服务器，或者是访问很慢。所以我们需要在本地搭建一个服务器来帮助我们去访问。那这种就是正向代理。正向代理的过程，隐藏了真实的客户端。客户端请求的服务都被代理服务器代替来请求
 反向代理比如：我们访问淘宝的时候，淘宝内部肯定不是只有一台服务器，它的内部有很多台服务器，那我们进行访问的时候，因为服务器中间session不共享，我们在服务器之间访问需要频繁登录。这时，淘宝搭建一个过渡服务器，对我们是没有任何影响的，我们登录一次，但是能访问所有，这种情况就是反向代理。对我们来说，客户端对代理是无感知的，客户端不需要任何配置就可以访问，我们只需要把请求发送给反向代理服务器，由反向代理服务器去选择目标服务器获取数据后，再返回给客户端，此时反向代理服务器和目标服务器对外就是一个服务器，暴露的是代理服务器地址，隐藏了真实服务器的地址。
 Negix便是一个高性能的HTTP和反向代理web服务器
-请求转发Negix服务器对外暴露Negix代理服务器的地址，将 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/04/25/Java/" title="Java">Java</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-04-25T08:35:07.000Z" title="发表于 2023-04-25 16:35:07">2023-04-25</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-04-25T11:06:55.981Z" title="更新于 2023-04-25 19:06:55">2023-04-25</time></span></div><div class="content">Spring读取配置文件属性@ConfigurationProperties和@Value注解用于获取配置文件中的属性定义并绑定到Java Bean或属性中
-@Value</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/04/24/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" title="动态规划">动态规划</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-04-24T08:28:38.000Z" title="发表于 2023-04-24 16:28:38">2023-04-24</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-04-25T11:06:57.529Z" title="更新于 2023-04-25 19:06:57">2023-04-25</time></span></div><div class="content">
+请求转发Negix服务器对外暴露Negix代理服务器的地址，将 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/04/25/Java/" title="Java">Java</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-04-25T08:35:07.000Z" title="发表于 2023-04-25 16:35:07">2023-04-25</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-04-25T11:31:58.583Z" title="更新于 2023-04-25 19:31:58">2023-04-25</time></span></div><div class="content">Spring读取配置文件属性@ConfigurationProperties和@Value注解用于获取配置文件中的属性定义并绑定到Java Bean或属性中
+@Value使用@Value直接从配置文件中读取配置  
+配置:
+1234aliyun.oss.file.endpoint=aliyun.oss.file.keyId=aliyun.oss.file.keySecret=aliyun.oss.file.bucketName=
+
+读取：
+12345678@Value(&quot;$&#123;aliyun.oss.file.endpoint&#125;&quot;)private String endpoint;@Value(&quot;$&#123;aliyun.oss.file.keyid&#125;&quot;)private String keyId;@Value(&quot;$&#123;aliyun.oss.file.keysecret&#125;&quot;)private String keySecret;@Value(&quot;$&#123;aliyun.oss. ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/04/24/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" title="动态规划">动态规划</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-04-24T08:28:38.000Z" title="发表于 2023-04-24 16:28:38">2023-04-24</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-04-25T11:16:52.576Z" title="更新于 2023-04-25 19:16:52">2023-04-25</time></span></div><div class="content">
 有人相爱，有人看海，有人dp做不出来
 
 初入DPFibonacciLeetcode-斐波那契通过计算前面的一些项来得出序列中的指定项的值，即递推。一个比较熟悉的例子即斐波那契数列。我们知道斐波那契数列有$f(n-1)+f(n)&#x3D;f(n+1)$，即
