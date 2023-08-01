@@ -4,6 +4,32 @@
   
     
     <entry>
+      <title>HTTP协议</title>
+      <link href="/2023/08/01/HTTP%E5%8D%8F%E8%AE%AE/"/>
+      <url>/2023/08/01/HTTP%E5%8D%8F%E8%AE%AE/</url>
+      
+        <content type="html"><![CDATA[<h2 id="HTTP协议"><a href="#HTTP协议" class="headerlink" title="HTTP协议"></a>HTTP协议</h2><p>HTTP: <strong>超文本</strong>传输协议( HyperText Transfer Protocol )</p><h3 id="1-1-为什么需要协议"><a href="#1-1-为什么需要协议" class="headerlink" title="1.1 为什么需要协议"></a>1.1 为什么需要协议</h3><ul><li>通信需要明确的边界-&gt;开始和结束</li><li>需要明确能够携带的信息-&gt;数据类型, 数据长度等等</li></ul><h3 id="1-2-协议里面有什么"><a href="#1-2-协议里面有什么" class="headerlink" title="1.2 协议里面有什么"></a>1.2 协议里面有什么</h3><p>以一个POST请求为例</p><figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">POST</span> <span class="string">/hello</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>www.baidu.com</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>application/x-www-form-urlencoded</span><br><span class="line"><span class="attribute">Content-Length</span><span class="punctuation">: </span>11</span><br><span class="line"></span><br><span class="line"><span class="language-abnf"><span class="attribute">name</span><span class="operator">=</span>zhangsan</span></span><br></pre></td></tr></table></figure><p>在这个请求中, 我们可以看到有以下几个部分</p><ul><li>请求行: <code>POST /hello HTTP/1.1</code> ，包含了请求方法, 请求路径, 协议版本</li><li>kv对形式的几组数据</li><li>空行，表示请求头部结束</li><li>请求体，包含了请求体信息</li></ul><p>kv对即<strong>请求头</strong>中一般包含有</p><ul><li>Host: 请求的主机地址</li><li>Content-Type: 请求体的类型</li><li>Content-Length: 请求体的长度</li><li>…</li></ul><p>也就是说, 协议中包含了三个部分</p><ul><li>请求行</li><li>请求头</li><li>请求体</li></ul><p>对于返回, 也是类似的, 也包含了三个部分</p><figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">HTTP/1.1</span> <span class="number">200</span> OK</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>text/html</span><br><span class="line"><span class="attribute">Content-Length</span><span class="punctuation">: </span>11</span><br><span class="line"></span><br><span class="line"><span class="language-ebnf"><span class="attribute">hello world</span></span></span><br></pre></td></tr></table></figure><p>区别在于，返回的第一行是<strong>状态行</strong>, 包含了协议版本, <strong>状态码, 状态信息</strong></p><h3 id="1-3-使用原生Go发送HTTP请求"><a href="#1-3-使用原生Go发送HTTP请求" class="headerlink" title="1.3 使用原生Go发送HTTP请求"></a>1.3 使用原生Go发送HTTP请求</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">&quot;fmt&quot;</span></span><br><span class="line">    <span class="string">&quot;io/ioutil&quot;</span></span><br><span class="line">    <span class="string">&quot;net/http&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    resp, err := http.Get(<span class="string">&quot;http://www.baidu.com&quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">        fmt.Println(<span class="string">&quot;get failed, err:&quot;</span>, err)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">defer</span> resp.Body.Close()</span><br><span class="line">    body, err := ioutil.ReadAll(resp.Body)</span><br><span class="line">    <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">        fmt.Println(<span class="string">&quot;read from resp.Body failed, err:&quot;</span>, err)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    fmt.Println(<span class="type">string</span>(body))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>gin</title>
+      <link href="/2023/07/28/gin/"/>
+      <url>/2023/07/28/gin/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>设计模式 1 设计原则</title>
       <link href="/2023/07/14/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
       <url>/2023/07/14/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</url>
